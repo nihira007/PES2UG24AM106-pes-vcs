@@ -119,9 +119,17 @@ int object_write(ObjectType type, const void *data, size_t len, ObjectID *id_out
 
     char dir[512];
     strncpy(dir, path, sizeof(dir));
-    dir[strrchr(dir, '/') - dir] = '\0';
 
-    mkdir(OBJECTS_DIR, 0755);
+    char *slash = strrchr(dir, '/');
+    if (slash) {
+        *slash = '\0';
+    } else {
+        free(full);
+        return -1;
+    }
+
+    mkdir(".pes", 0755);
+    mkdir(".pes/objects", 0755);
     mkdir(dir, 0755);
 
     char tmp_path[512];
