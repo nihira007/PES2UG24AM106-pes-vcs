@@ -148,3 +148,4 @@ int tree_from_index(ObjectID *id_out) {
 // Phase2: initial implementation
 // Phase2: added tree structure
 // Phase2: added serialization logic
+// Phase2: integrated object_write
